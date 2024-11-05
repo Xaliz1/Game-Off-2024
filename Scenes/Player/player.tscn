@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_pq87s"]
 [ext_resource type="Texture2D" uid="uid://bpl1ly8tj0rw" path="res://Assets/Characters/Prototype_Character/Prototype_Character.png" id="2_ifgv8"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vql3f"]
-radius = 5.0
-height = 14.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_dwxka"]
+radius = 4.0
 
 [sub_resource type="Animation" id="Animation_gifug"]
 resource_name = "idle"
@@ -19,13 +18,15 @@ _data = {
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_pq87s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_vql3f")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
 texture = ExtResource("2_ifgv8")
 hframes = 4
 vframes = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_dwxka")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

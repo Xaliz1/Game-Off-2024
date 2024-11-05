@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://caimasfwwy5e2"]
+
+[ext_resource type="Script" path="res://Scripts/Global/interaction_manager.gd" id="1_nap6a"]
+[ext_resource type="FontFile" uid="uid://dd1484vsj3jvs" path="res://Assets/Fonts/AlbertTextBold.otf" id="1_oqakm"]
+
+[node name="InteractionManager" type="Node2D"]
+script = ExtResource("1_nap6a")
+
+[node name="Label" type="Label" parent="."]
+z_index = 10
+texture_filter = 4
+texture_repeat = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.5
+offset_right = 52.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_oqakm")
+text = "[E] to Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
