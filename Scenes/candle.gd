@@ -6,13 +6,6 @@ extends AnimatedSprite2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	interaction_area.interact = Callable(self,"on_interact")
-	
-func _process(delta: float) -> void:
-	if animation.begins_with("unlit"):
-		interaction_area.interaction_name = "Ignite"
-	elif animation.begins_with("lit"):
-		interaction_area.interaction_name = "Put Out"
-
 
 func on_interact():
 	if animation.begins_with("unlit"):

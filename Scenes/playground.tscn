@@ -1,10 +1,15 @@
-[gd_scene load_steps=17 format=4 uid="uid://bngs2o8k333m2"]
+[gd_scene load_steps=33 format=4 uid="uid://bngs2o8k333m2"]
 
 [ext_resource type="Texture2D" uid="uid://bd560sdymdu3" path="res://Assets/interior full/basics/wallpapers.png" id="1_tn6a2"]
 [ext_resource type="PackedScene" uid="uid://dgts74bgyxank" path="res://Scenes/Player/player.tscn" id="2_xrhmg"]
 [ext_resource type="Texture2D" uid="uid://8tu2nqhmic51" path="res://Assets/interior full/fireplace.png" id="3_q14r0"]
 [ext_resource type="Script" path="res://Scripts/Interactions/fireplace.gd" id="4_sel44"]
 [ext_resource type="PackedScene" uid="uid://bw2hd6bt17eoo" path="res://Scenes/Interaction/InteractionArea.tscn" id="5_m2f07"]
+[ext_resource type="Texture2D" uid="uid://cipegykcbaho6" path="res://Assets/interior full/Table.png" id="6_g7cnc"]
+[ext_resource type="Texture2D" uid="uid://d1srx01sp1tx0" path="res://Assets/Characters/Extra/light.png" id="6_ri0s3"]
+[ext_resource type="Texture2D" uid="uid://cc53t47dvmjw0" path="res://Assets/interior full/Candles.png" id="7_jr3gi"]
+[ext_resource type="Script" path="res://Scenes/candle.gd" id="8_gmi5e"]
+[ext_resource type="PackedScene" uid="uid://cdhsv3e6otnmo" path="res://Scenes/evil_spirit.tscn" id="9_fuudk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g1bct"]
 texture = ExtResource("1_tn6a2")
@@ -1581,6 +1586,81 @@ size = Vector2(27, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvcuj"]
 size = Vector2(27, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lkmo6"]
+size = Vector2(15, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe615"]
+atlas = ExtResource("7_jr3gi")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6vqn"]
+atlas = ExtResource("7_jr3gi")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buo2q"]
+atlas = ExtResource("7_jr3gi")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g501i"]
+atlas = ExtResource("7_jr3gi")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajqsv"]
+atlas = ExtResource("7_jr3gi")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w734i"]
+atlas = ExtResource("7_jr3gi")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq6ho"]
+atlas = ExtResource("7_jr3gi")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr5kl"]
+atlas = ExtResource("7_jr3gi")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ex717"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe615")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6vqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buo2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g501i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajqsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w734i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aq6ho")
+}],
+"loop": true,
+"name": &"lit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr5kl")
+}],
+"loop": true,
+"name": &"unlit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yyukp"]
+radius = 16.0
+
 [node name="playground" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -1614,3 +1694,46 @@ shape = SubResource("RectangleShape2D_2wg6b")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fireplace/StaticBody2D"]
 position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_wvcuj")
+
+[node name="PointLight2D" type="PointLight2D" parent="fireplace"]
+visible = false
+color = Color(0.968627, 0.745098, 0.176471, 1)
+energy = 0.75
+texture = ExtResource("6_ri0s3")
+texture_scale = 0.5
+
+[node name="Table" type="Sprite2D" parent="."]
+position = Vector2(232, 256)
+texture = ExtResource("6_g7cnc")
+
+[node name="RigidBody2D" type="StaticBody2D" parent="Table"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/RigidBody2D"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_lkmo6")
+
+[node name="Candle" type="AnimatedSprite2D" parent="Table"]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_ex717")
+animation = &"unlit"
+autoplay = "unlit"
+script = ExtResource("8_gmi5e")
+
+[node name="InteractionArea" parent="Table/Candle" instance=ExtResource("5_m2f07")]
+interaction_name = "Summon"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Candle/InteractionArea"]
+shape = SubResource("CircleShape2D_yyukp")
+
+[node name="PointLight2D" type="PointLight2D" parent="Table/Candle"]
+visible = false
+color = Color(0.969297, 0.74446, 0.176318, 1)
+energy = 0.25
+texture = ExtResource("6_ri0s3")
+texture_scale = 0.15
+
+[node name="Evil_Spirit" parent="." instance=ExtResource("9_fuudk")]
+position = Vector2(440, 192)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.270222, 0.270222, 0.270222, 1)
