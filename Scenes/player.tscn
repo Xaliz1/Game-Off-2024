@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgts74bgyxank"]
+
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_pq87s"]
+[ext_resource type="Texture2D" uid="uid://bpl1ly8tj0rw" path="res://Assets/Characters/Prototype_Character/Prototype_Character.png" id="2_ifgv8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vql3f"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="Animation" id="Animation_gifug"]
+resource_name = "idle"
+length = 0.2
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_imvh8"]
+_data = {
+"idle_down": SubResource("Animation_gifug")
+}
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_pq87s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_vql3f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ifgv8")
+hframes = 4
+vframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_imvh8")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
