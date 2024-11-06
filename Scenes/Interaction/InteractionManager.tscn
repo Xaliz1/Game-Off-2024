@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://caimasfwwy5e2"]
 
-[ext_resource type="Script" path="res://Scripts/Global/interaction_manager.gd" id="1_nap6a"]
+[ext_resource type="Script" path="res://Scripts/Global/Interaction_Manager.gd" id="1_nap6a"]
 [ext_resource type="FontFile" uid="uid://dd1484vsj3jvs" path="res://Assets/Fonts/AlbertTextBold.otf" id="1_oqakm"]
 
 [node name="InteractionManager" type="Node2D"]

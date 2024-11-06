@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdhsv3e6otnmo"]
+[gd_scene load_steps=5 format=3 uid="uid://cdhsv3e6otnmo"]
 
 [ext_resource type="Texture2D" uid="uid://d10t01yxnkp6e" path="res://Assets/Characters/Prototype_Character/Prototype_Character_Red.png" id="1_r70vf"]
+[ext_resource type="Script" path="res://Scripts/evil_spirit.gd" id="1_tafcy"]
 [ext_resource type="Texture2D" uid="uid://d1srx01sp1tx0" path="res://Assets/Characters/Extra/light.png" id="2_35b5e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_twwb0"]
 radius = 4.0
 
 [node name="Evil_Spirit" type="CharacterBody2D"]
+script = ExtResource("1_tafcy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.588235)
@@ -23,3 +25,11 @@ shape = SubResource("CircleShape2D_twwb0")
 color = Color(0.78417, 0, 0.0236103, 0.823529)
 texture = ExtResource("2_35b5e")
 texture_scale = 0.2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
