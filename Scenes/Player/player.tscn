@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgts74bgyxank"]
+[gd_scene load_steps=8 format=3 uid="uid://dgts74bgyxank"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_pq87s"]
 [ext_resource type="Texture2D" uid="uid://bpl1ly8tj0rw" path="res://Assets/Characters/Prototype_Character/Prototype_Character.png" id="2_ifgv8"]
+[ext_resource type="FontFile" uid="uid://dd1484vsj3jvs" path="res://Assets/Fonts/AlbertTextBold.otf" id="3_oea26"]
+[ext_resource type="Script" path="res://Scripts/Global/Retry Button.gd" id="4_qaod0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dwxka"]
 radius = 4.0
@@ -35,3 +37,34 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="Game_over" type="Panel" parent="."]
+visible = false
+z_index = 20
+custom_minimum_size = Vector2(400, 225)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Game_over"]
+process_mode = 3
+z_index = 20
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -15.5
+offset_right = 28.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_oea26")
+text = "Retry?"
+script = ExtResource("4_qaod0")
+
+[connection signal="pressed" from="Game_over/Button" to="Game_over/Button" method="_on_pressed"]

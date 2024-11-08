@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdhsv3e6otnmo"]
+[gd_scene load_steps=6 format=3 uid="uid://cdhsv3e6otnmo"]
 
 [ext_resource type="Texture2D" uid="uid://d10t01yxnkp6e" path="res://Assets/Characters/Prototype_Character/Prototype_Character_Red.png" id="1_r70vf"]
 [ext_resource type="Script" path="res://Scripts/evil_spirit.gd" id="1_tafcy"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_twwb0"]
 radius = 4.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bor70"]
+height = 20.0
 
 [node name="Evil_Spirit" type="CharacterBody2D"]
 script = ExtResource("1_tafcy")
@@ -31,5 +34,21 @@ wait_time = 10.0
 one_shot = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 1.0
+path_max_distance = 30.0
+simplify_path = true
+simplify_epsilon = 16.0
+radius = 16.0
+neighbor_distance = 25.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_bor70")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

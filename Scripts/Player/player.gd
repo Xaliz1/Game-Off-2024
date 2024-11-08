@@ -4,6 +4,8 @@ extends CharacterBody2D
 const movement_speed = 120
 var move_direction = Vector2.ZERO
 var desired_velocity = Vector2.ZERO
+@onready var game_over: Panel = $Game_over
+
 
 
 func _physics_process(delta: float) -> void:
@@ -25,3 +27,9 @@ func apply_movement():
 	# Smoothly transition to desired velocity over time (lerp factor 0.1).
 	velocity = desired_velocity.lerp(desired_velocity, .1)
 	move_and_slide()
+
+func gameover():
+	game_over.show()
+	get_tree().paused = true
+	pass
+	
