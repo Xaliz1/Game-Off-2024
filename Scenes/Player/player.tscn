@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgts74bgyxank"]
+[gd_scene load_steps=9 format=3 uid="uid://dgts74bgyxank"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_pq87s"]
 [ext_resource type="Texture2D" uid="uid://bpl1ly8tj0rw" path="res://Assets/Characters/Prototype_Character/Prototype_Character.png" id="2_ifgv8"]
 [ext_resource type="FontFile" uid="uid://dd1484vsj3jvs" path="res://Assets/Fonts/AlbertTextBold.otf" id="3_oea26"]
 [ext_resource type="Script" path="res://Scripts/Global/Retry Button.gd" id="4_qaod0"]
+[ext_resource type="Script" path="res://Scenes/Player/pause.gd" id="5_h0j7v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dwxka"]
 radius = 4.0
@@ -67,4 +68,69 @@ theme_override_fonts/font = ExtResource("3_oea26")
 text = "Retry?"
 script = ExtResource("4_qaod0")
 
+[node name="Pause" type="Panel" parent="."]
+visible = false
+z_index = 20
+offset_left = -193.0
+offset_top = -108.0
+offset_right = 192.0
+offset_bottom = 109.0
+script = ExtResource("5_h0j7v")
+
+[node name="Exit to Main Menu" type="Button" parent="Pause"]
+process_mode = 3
+layout_mode = 0
+offset_left = 129.0
+offset_top = 132.0
+offset_right = 258.0
+offset_bottom = 158.0
+theme_override_fonts/font = ExtResource("3_oea26")
+text = "Exit to Main Menu"
+
+[node name="Resume" type="Button" parent="Pause"]
+process_mode = 3
+layout_mode = 0
+offset_left = 165.0
+offset_top = 63.0
+offset_right = 221.0
+offset_bottom = 89.0
+theme_override_fonts/font = ExtResource("3_oea26")
+text = "Resume"
+
+[node name="Options" type="Button" parent="Pause"]
+process_mode = 3
+layout_mode = 0
+offset_left = 167.0
+offset_top = 97.0
+offset_right = 220.0
+offset_bottom = 123.0
+theme_override_fonts/font = ExtResource("3_oea26")
+text = "Options"
+
+[node name="Menu" type="Panel" parent="."]
+visible = false
+z_index = 6
+offset_left = -192.0
+offset_top = -108.0
+offset_right = 192.0
+offset_bottom = 108.0
+
+[node name="HSlider" type="HSlider" parent="Menu"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 66.0
+offset_right = 228.0
+offset_bottom = 82.0
+
+[node name="TextEdit" type="TextEdit" parent="Menu"]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 18.0
+offset_right = 219.0
+offset_bottom = 56.0
+text = "Audio"
+
 [connection signal="pressed" from="Game_over/Button" to="Game_over/Button" method="_on_pressed"]
+[connection signal="pressed" from="Pause/Exit to Main Menu" to="Pause" method="_on_exit_to_main_menu_pressed"]
+[connection signal="pressed" from="Pause/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause/Resume" to="Pause" method="_on_resume_pressed"]

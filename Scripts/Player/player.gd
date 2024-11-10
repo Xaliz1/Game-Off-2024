@@ -5,6 +5,7 @@ const movement_speed = 120
 var move_direction = Vector2.ZERO
 var desired_velocity = Vector2.ZERO
 @onready var game_over: Panel = $Game_over
+@onready var pause: Panel = $Pause
 
 
 
@@ -32,4 +33,10 @@ func gameover():
 	game_over.show()
 	get_tree().paused = true
 	pass
-	
+
+func _input(event):
+	if event.is_action_pressed("Pause"):
+		get_tree().paused = true
+		pause.show()
+		pass
+		
