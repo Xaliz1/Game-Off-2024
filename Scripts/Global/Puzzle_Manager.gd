@@ -19,5 +19,6 @@ func _on_test_puzzle_puzzle_failed() -> void:
 
 
 func _on_evil_spirit_banished() -> void:
+	InteractionManager.can_interact = true
 	evil_spirit.stop_chasing()
 	canvas_modulate.hide()

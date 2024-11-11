@@ -13,6 +13,7 @@ var is_visible = false
 
 func _physics_process(delta: float) -> void:
 	if is_visible and player:
+		InteractionManager.can_interact = false
 		update_path_to_player()
 		follow_path(delta)
 	else:
