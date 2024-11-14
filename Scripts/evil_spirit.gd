@@ -8,12 +8,14 @@ signal Banished
 @onready var player: Node2D = $"../player"
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var fading_animation: AnimationPlayer = $"Sprite2D/Fading Animation"
 
 var is_visible = false
 
 func _physics_process(delta: float) -> void:
 	if is_visible and player:
 		InteractionManager.can_interact = false
+		fading()
 		update_path_to_player()
 		follow_path(delta)
 	else:
@@ -53,3 +55,10 @@ func stop_chasing():
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.gameover()
+
+
+func fading():
+	if is_visible:
+		fading_animation.play("Fade Out")
+	else:
+		fading_animation.stop()

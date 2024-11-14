@@ -1,42 +1,55 @@
 extends CharacterBody2D
 
-
 const movement_speed = 120
 var move_direction = Vector2.ZERO
 var desired_velocity = Vector2.ZERO
+var is_on_ice = false  # Track if the player is on ice
+var has_collided = true
 @onready var game_over: Panel = $Game_over
 @onready var pause: Panel = $Pause
 
-
-
 func _physics_process(delta: float) -> void:
 	player_input()
-	apply_movement()
-
+	apply_movement(delta)
 
 func player_input():
-	move_direction = Vector2.ZERO
-	# Adjust move direction based on input actions.
-	# Horizontal movement: subtract 1 if 'Left' is pressed, add 1 if 'Right' is pressed.
-	move_direction.x = -int(Input.is_action_pressed("Left")) + int(Input.is_action_pressed("Right"))
-	# Vertical movement: subtract 1 if 'Up' is pressed, add 1 if 'Down' is pressed.
-	move_direction.y = -int(Input.is_action_pressed("Up")) + int(Input.is_action_pressed("Down"))
-	# Normalize the move direction to avoid faster diagonal movement and apply speed.
-	desired_velocity = move_direction.normalized() * movement_speed
+	# Reset movement direction
+	if has_collided or !is_on_ice:
+		move_direction = Vector2.ZERO
+	
+	# If the player is not on ice, directly control movement
+		if !is_on_ice:
+			move_direction.x = -int(Input.is_action_pressed("Left")) + int(Input.is_action_pressed("Right"))
+			move_direction.y = -int(Input.is_action_pressed("Up")) + int(Input.is_action_pressed("Down"))
+			desired_velocity = move_direction.normalized() * movement_speed
+		else:
+			# On ice, maintain current velocity unless new input is detected
+			if Input.is_action_pressed("Left") or Input.is_action_pressed("Right") or Input.is_action_pressed("Up") or Input.is_action_pressed("Down") and has_collided:
+				move_direction.x = -int(Input.is_action_pressed("Left")) + int(Input.is_action_pressed("Right"))
+				move_direction.y = -int(Input.is_action_pressed("Up")) + int(Input.is_action_pressed("Down"))
+				desired_velocity = move_direction.normalized() * movement_speed
+				velocity = desired_velocity  # Set initial sliding direction
+				has_collided = false
+func apply_movement(delta: float):
+	# If on ice, apply frictional slowdown
+	if is_on_ice:
+		velocity = velocity.move_toward(Vector2.ZERO, 5 * delta)
+	else:
+		# Directly set velocity to desired velocity when not on ice
+		velocity = desired_velocity
 
-func apply_movement():
-	# Smoothly transition to desired velocity over time (lerp factor 0.1).
-	velocity = desired_velocity.lerp(desired_velocity, .1)
-	move_and_slide()
-
+	# Move and detect collisions
+	var collision = move_and_collide(velocity * delta)
+	
+	# If colliding with a wall, stop velocity
+	if collision:
+		velocity = Vector2.ZERO
+		has_collided = true
 func gameover():
 	game_over.show()
 	get_tree().paused = true
-	pass
 
 func _input(event):
 	if event.is_action_pressed("Pause"):
 		get_tree().paused = true
 		pause.show()
-		pass
-		
