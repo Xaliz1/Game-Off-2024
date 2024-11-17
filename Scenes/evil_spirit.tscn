@@ -4,8 +4,10 @@
 [ext_resource type="Script" path="res://Scripts/evil_spirit.gd" id="1_tafcy"]
 [ext_resource type="Texture2D" uid="uid://d1srx01sp1tx0" path="res://Assets/Characters/Extra/light.png" id="2_35b5e"]
 
-[sub_resource type="Animation" id="Animation_3j4he"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_8j60w"]
+resource_name = "Fade In"
+length = 1.5
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -13,10 +15,10 @@ tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.588235)]
+"values": [Color(1, 1, 1, 0.117647), Color(1, 1, 1, 0.588235)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -25,10 +27,10 @@ tracks/1/path = NodePath("PointLight2D:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.78417, 0, 0.0236103, 0.823529)]
+"values": [Color(0.784314, 0, 0.0235294, 0.117647), Color(0.78417, 0, 0.0236103, 0.823529)]
 }
 
 [sub_resource type="Animation" id="Animation_2qpg3"]
@@ -60,10 +62,8 @@ tracks/1/keys = {
 "values": [Color(0.78417, 0, 0.0236103, 0.823529), Color(0.784314, 0, 0.0235294, 0), Color(0.78417, 0, 0.0236103, 0.823529)]
 }
 
-[sub_resource type="Animation" id="Animation_8j60w"]
-resource_name = "Fade In"
-length = 1.5
-loop_mode = 2
+[sub_resource type="Animation" id="Animation_3j4he"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -71,10 +71,10 @@ tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.117647), Color(1, 1, 1, 0.588235)]
+"values": [Color(1, 1, 1, 0.588235)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -83,10 +83,10 @@ tracks/1/path = NodePath("PointLight2D:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.784314, 0, 0.0235294, 0.117647), Color(0.78417, 0, 0.0236103, 0.823529)]
+"values": [Color(0.78417, 0, 0.0236103, 0.823529)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4kekx"]
