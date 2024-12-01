@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://4djo7ma7ftya"]
+
+[ext_resource type="Script" path="res://Scenes/UI/canvas_layer.gd" id="1_vxhl6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iavu1"]
+
+[node name="dialoguePlayer" type="CanvasLayer"]
+process_mode = 1
+script = ExtResource("1_vxhl6")
+
+[node name="TextLabel" type="Label" parent="."]
+process_mode = 1
+offset_left = -155.0
+offset_top = -24.0
+offset_right = 342.0
+offset_bottom = 48.0
+scale = Vector2(0.62363, 0.65622)
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 2
+
+[node name="DialogueBackground" type="TextureRect" parent="."]
+process_mode = 1
+self_modulate = Color(0, 0, 0, 0.576471)
+offset_left = -158.0
+offset_top = -27.0
+offset_right = 335.0
+offset_bottom = 52.0
+scale = Vector2(0.640001, 0.68)
+texture = SubResource("ViewportTexture_iavu1")

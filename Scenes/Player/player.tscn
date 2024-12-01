@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgts74bgyxank"]
+[gd_scene load_steps=10 format=3 uid="uid://dgts74bgyxank"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_pq87s"]
 [ext_resource type="Texture2D" uid="uid://bpl1ly8tj0rw" path="res://Assets/Characters/Prototype_Character/Prototype_Character.png" id="2_ifgv8"]
@@ -17,6 +17,9 @@ length = 0.2
 _data = {
 "idle_down": SubResource("Animation_gifug")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlwd8"]
+size = Vector2(16, 20)
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_pq87s")
@@ -129,6 +132,13 @@ offset_top = 18.0
 offset_right = 219.0
 offset_bottom = 56.0
 text = "Audio"
+
+[node name="dialogueInteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dialogueInteractionArea"]
+light_mask = 2
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_xlwd8")
 
 [connection signal="pressed" from="Game_over/Button" to="Game_over/Button" method="_on_pressed"]
 [connection signal="pressed" from="Pause/Exit to Main Menu" to="Pause" method="_on_exit_to_main_menu_pressed"]

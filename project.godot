@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 InteractionManager="*res://Scenes/Interaction/InteractionManager.tscn"
+SignalBus="*res://Scripts/Player/singletons/signalBus.gd"
 
 [dotnet]
 
@@ -62,6 +63,8 @@ Pause={
 
 [layer_names]
 
+2d_render/layer_1="World"
+2d_render/layer_2="Dialogue"
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
 
