@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://biqn2vgdfqwko"]
+[gd_scene load_steps=6 format=4 uid="uid://biqn2vgdfqwko"]
 
 [ext_resource type="Texture2D" uid="uid://cqhfn1vkjbds7" path="res://Assets/Assets (Harley)/spritesheet.png" id="1_2la4d"]
 [ext_resource type="PackedScene" uid="uid://dgts74bgyxank" path="res://Scenes/Player/player.tscn" id="2_1puip"]
+[ext_resource type="PackedScene" uid="uid://cdhsv3e6otnmo" path="res://Scenes/evil_spirit.tscn" id="3_4yljv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c3wrr"]
 texture = ExtResource("1_2la4d")
@@ -25,3 +26,6 @@ rendering_quadrant_size = 64
 
 [node name="player" parent="." instance=ExtResource("2_1puip")]
 position = Vector2(193, 439)
+
+[node name="Evil_Spirit" parent="." instance=ExtResource("3_4yljv")]
+position = Vector2(199, 140)

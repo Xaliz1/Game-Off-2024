@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cdhsv3e6otnmo"]
 
-[ext_resource type="Texture2D" uid="uid://d10t01yxnkp6e" path="res://Assets/Characters/Prototype_Character/Prototype_Character_Red.png" id="1_r70vf"]
 [ext_resource type="Script" path="res://Scripts/evil_spirit.gd" id="1_tafcy"]
 [ext_resource type="Texture2D" uid="uid://d1srx01sp1tx0" path="res://Assets/Characters/Extra/light.png" id="2_35b5e"]
+[ext_resource type="Texture2D" uid="uid://cljjjyikwr7hq" path="res://Assets/Assets (Harley)/bigghost.png" id="2_ebgkw"]
 
 [sub_resource type="Animation" id="Animation_8j60w"]
 resource_name = "Fade In"
@@ -97,10 +97,10 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_twwb0"]
-radius = 4.0
+radius = 41.1096
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bor70"]
-height = 20.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_x56jn"]
+radius = 57.0
 
 [node name="Evil_Spirit" type="CharacterBody2D"]
 script = ExtResource("1_tafcy")
@@ -108,9 +108,8 @@ script = ExtResource("1_tafcy")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.588235)
 position = Vector2(0, -7)
-texture = ExtResource("1_r70vf")
-hframes = 4
-vframes = 12
+texture = ExtResource("2_ebgkw")
+hframes = 2
 
 [node name="Fading Animation" type="AnimationPlayer" parent="Sprite2D"]
 root_node = NodePath("../..")
@@ -119,13 +118,13 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(-4, -4)
 shape = SubResource("CircleShape2D_twwb0")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.78417, 0, 0.0236103, 0.823529)
 texture = ExtResource("2_35b5e")
-texture_scale = 0.2
+texture_scale = 0.35
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
@@ -144,8 +143,8 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -6)
-shape = SubResource("CapsuleShape2D_bor70")
+position = Vector2(-4, -6)
+shape = SubResource("CircleShape2D_x56jn")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
